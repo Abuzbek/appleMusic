@@ -1,0 +1,13 @@
+extends layout
+
+block content
+    h1.mb-5 #{title}
+    .row
+        each music, i in musics 
+            .col-3
+                .card_song
+                    a(href="/musics/"+music.id).card_img
+                        img.song_img(src=`../public/images/${music.albumImg}` alt="png")
+                    a.song_name(href="/musics/"+music.id)= music.album
+
+

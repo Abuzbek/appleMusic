@@ -1,0 +1,29 @@
+extends layout
+
+block content 
+    .row
+        .col-4 
+            .song_box.song_cursor(onclick="songBoxPlay()")
+                img.song_box_img(src=`../public/images/${music.img}`, alt="png")
+        .col-8
+            .song_box
+                p.song_box_album #{music.album}
+                h4.song_box_singer #{music.singer}
+                audio(src=`../public/music/${music.song}`)
+
+                a.song_box_menu(href="#!" onclick="menuToggle()") 
+                    span.song_box_span ...
+                ul.options.options_none
+                    li.options_item 
+                        a.options_link(href="/edit/"+music.id) Редактировать
+                    li.options_item 
+                        a.options_link(href="/music/delete/"+music.id) Удалить
+    .song_box_music(onclick="songBoxPlay()")
+        .song_box_left
+            span.song_box_none
+                i.fas.fa-play
+            a.song_box_name(href="#!") #{music.name}
+        .song_box_right
+
+
+

@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    h1.mb-5 #{title}
+    .row
+        each music, i in musics 
+            .col-3
+                .card_song.singer_card
+                    .singer_photo
+                        .singer_photo_shadow
+                            each val, key in music.singer
+                                if val != music.singer
+                            a.singer_name(href="/musics/"+music.id)= music.singer
+                        img(src=`../public/images/${music.singerImg}` alt="png")
+
+
