@@ -3,10 +3,10 @@ html(lang="en")
     head
         meta(charset="UTF-8")
         meta(name="viewport" content="width=device-width, initial-scale=1.0")
-        link(rel="stylesheet" href="/stylesheets/all.min.css")
+        link(rel="stylesheet" href="../public/stylesheets/all.min.css")
         link(rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap")
         link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous")
-        link(rel="stylesheet" href="/stylesheets/style.css")
+        link(rel="stylesheet" href="../public/stylesheets/style.css")
         title #{title}
     body
     if user
@@ -15,7 +15,7 @@ html(lang="en")
                 a(href="/accountEdit/"+user.id title="Профиль").account_link
                     if user.accountImg
                         span.account_box
-                            img.account_img(src=`${user.accountImg}` alt=`${user.accountImg}`)
+                            img.account_img(src=`../public${user.accountImg}` alt=``)
                     span.account_name #{user.name}
                 a(href="#!" title="Меню" onclick="accounntMenu()").account_menu
                     span.account_icon 

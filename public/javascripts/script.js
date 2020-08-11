@@ -84,5 +84,4 @@ window.addEventListener('load', function (e) {
     }
 
     getTime()
-
 });
