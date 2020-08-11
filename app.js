@@ -4,6 +4,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const passport = require('passport')
 
 // validator
 const flash = require('connect-flash');
@@ -18,6 +19,10 @@ const editRouter = require('./routes/musicEdit');
 const deleteRouter = require('./routes/musicDelete');
 const singerRouter = require('./routes/singers');
 const albumRouter = require('./routes/albums');
+// const songsRouter = require('./routes/singerSongs');
+const usersRouter = require('./routes/user');
+const accountRouter = require('./routes/accountEdit');
+// const fileMiddleware = require('./middleware/file');
 
 const app = express();
 
@@ -34,6 +39,8 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
 }))
+
+// app.use(fileMiddleware.single('accountImg'))
 
 // express validator
 app.use(validator({
@@ -63,21 +70,38 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use("/public", express.static(path.join(__dirname, 'public')));
 
-mongoose.connect('mongodb://localhost:27017/Music', { useNewUrlParser: true, useUnifiedTopology: true });
+// mongoDB connection
+const db2 = require('./cf/db');
+mongoose.connect(db2.db, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
-  console.log('MongoDb local connected');
+  console.log('MongoDb global connected');
 });
 
-app.use('/', indexRouter);
+// passport connection
+require('./cf/passport')(passport)
+app.use(passport.initialize())
+app.use(passport.session())
+
+// user init 
+app.get('*', (req, res, next) => {
+  res.locals.user = req.user || null;
+  next();
+})
+
+
+app.use('/index', indexRouter);
 app.use('/music/add', addRouter);
 app.use('/musics', musicsRouter);
 app.use('/edit/', editRouter);
 app.use('/music/delete/', deleteRouter);
 app.use('/artists/', singerRouter);
 app.use('/albums/', albumRouter);
+// app.use(`/musics/`, songsRouter);
+app.use(`/`, usersRouter);
+app.use(`/accountEdit/`, accountRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

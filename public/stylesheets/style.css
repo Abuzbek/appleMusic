@@ -1,7 +1,7 @@
 body {
   margin: 0;
   box-sizing: border-box;
-  padding: 50px;
+  padding: 0 50px;
   padding-left: 280px;
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 14px;
@@ -428,7 +428,8 @@ a.song_box_name {
   position: relative;
 }
 
-.photo_absolute {
+.photo_absolute,
+.photo_id {
   position: absolute;
   right: 0;
   display: flex;
@@ -438,6 +439,31 @@ a.song_box_name {
   border-radius: 50%;
   transform: translateY(-50%);
   top: 50%;
+  align-items: center;
+  justify-content: center;
+}
+
+.photo_id {
+  right: 10%;
+}
+
+.photo_id span {
+  font-weight: 600;
+}
+
+.photo_id:hover span {
+  color: #d6254b;
+}
+
+.inputID {
+  color: #6c757d;
+  font-size: 14px;
+}
+
+.photo_absolute_label {
+  width: 100%;
+  height: 100%;
+  display: flex;
   align-items: center;
   justify-content: center;
 }
@@ -489,7 +515,8 @@ a.singer_name {
   justify-content: center;
 }
 
-.alert-danger {
+.alert-danger,
+.alert-error {
   color: #d6254b;
   background-color: transparent;
   border-color: #d6254b;
@@ -509,8 +536,87 @@ a.singer_name {
   margin-top: 200px;
 }
 
+.account {
+  position: relative;
+  display: block;
+  margin-top: 15px;
+  padding-bottom: 50px;
+}
 
+a.account_link {
+  position: absolute;
+  right: 3%;
+  top: 0;
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+  font-size: 16px;
+}
 
+a.account_menu {
+  position: absolute;
+  right: 0;
+  top: 5%;
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+  font-size: 16px;
+}
+
+.account_box {
+  display: block;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 10px;
+}
+
+.account_img {
+  width: 100%;
+}
+
+.account_icon {
+  margin-left: 10px;
+  font-size: 20px;
+}
+
+.account_menu_list {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  list-style: none;
+  width: 200px;
+  box-shadow: 0 0 10px black;
+  border-radius: 5px;
+  padding: 0;
+  z-index: 99;
+  background-color: #181818;
+  overflow: hidden;
+}
+
+.account_menu_item {
+  line-height: 2;
+}
+
+a.account_menu_link {
+  padding: 5px 0;
+  padding-left: 40px;
+  display: block;
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+a.account_menu_link:hover {
+  background-color: #464444;
+}
+
+.account_menu_none {
+  display: none !important;
+}
 
 @media(max-width: 1400px) {
   .song_img {

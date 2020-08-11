@@ -25,10 +25,18 @@ const MusicSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    // singerID: {
+    //     type: String,
+    //     required: true
+    // },
     albumImg: {
         type: String,
         required: true
     },
+    // albumID: {
+    //     type: String,
+    //     required: true
+    // },
 })
 
 module.exports = mongoose.model('Music', MusicSchema);

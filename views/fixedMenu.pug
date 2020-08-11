@@ -1,15 +1,15 @@
 nav.navbar.navbar-expand-sm
-    a.navbar-brand(href="/")
+    a.navbar-brand(href="/index")
         i.fab.fa-apple
         span.logo__span Music
     #navbarSupportedContent.collapse.navbar-collapse
         ul.navbar-nav.mr-auto
             if isHead
                 li.nav-item.active
-                    a.nav-link.menu_link(href="/") Музыки
+                    a.nav-link.menu_link(href="/index") Музыки
             else
                 li.nav-item
-                    a.nav-link.menu_link(href="/") Музыки
+                    a.nav-link.menu_link(href="/index") Музыки
             if isSingers
                 li.nav-item.active
                     a.nav-link.menu_link(href="/artists/") Артисты
@@ -22,14 +22,14 @@ nav.navbar.navbar-expand-sm
             else 
                 li.nav-item
                     a.nav-link.menu_link(href="/albums/") Альбомы
-            if isAdd
-                li.nav-item.music_add.active
-                    a.nav-link(href="/music/add") 
-                        i.fal.fa-plus-circle 
-                        span.music_add_span Добавить музыка
-            else 
-                li.nav-item.music_add
-                    a.nav-link(href="/music/add")
-                        i.fal.fa-plus-circle 
-                        span.music_add_span Добавить музыка
-    
+            if user.username == 'mirzaabdullayev'
+                if isAdd
+                    li.nav-item.music_add.active
+                        a.nav-link(href="/music/add") 
+                            i.fal.fa-plus-circle 
+                            span.music_add_span Добавить музыка
+                else 
+                    li.nav-item.music_add
+                        a.nav-link(href="/music/add")
+                            i.fal.fa-plus-circle 
+                            span.music_add_span Добавить музыка

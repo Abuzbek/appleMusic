@@ -1,24 +1,26 @@
 extends layout
 
 block content
-    h1.mb-5 #{title}
-    .row
-        each music, i in musics 
-            .col-3
-                .card_song
-                    .card_img
-                        .card_hover
-                            audio.card_audio(src=`../public/music/${music.song}`, id=music.id)
-                            button.card_play 
-                                i.fas.fa-play
-                            button.card_pause 
-                                i.fas.fa-pause
-                        img.song_img(src=`../public/images/${music.img}` alt="png")
-                    a.song_name(href="/musics/"+music.id)= music.name
-        .col-3
-            .card_song
-                .card_img.add_song
-                    a(href="/music/add").card_add
-                        button.add_song_btn 
-                            i.fal.fa-plus
-                    img.song_img(src=`../public/images/add.jpg` alt="png")
+    if user
+        h1.mb-5 #{title}
+        .row
+            each music, i in musics 
+                .col-3
+                    .card_song
+                        .card_img
+                            .card_hover
+                                audio.card_audio(src=`../public/music/${music.song}`, id=music.id)
+                                button.card_play 
+                                    i.fas.fa-play
+                                button.card_pause 
+                                    i.fas.fa-pause
+                            img.song_img(src=`../public/images/${music.img}` alt="png")
+                        a.song_name(href="/musics/"+music.id)= music.name
+            if user.username == 'mirzaabdullayev'
+                .col-3
+                    .card_song
+                        .card_img.add_song
+                            a(href="/music/add").card_add
+                                button.add_song_btn 
+                                    i.fal.fa-plus
+                            img.song_img(src=`../public/images/add.jpg` alt="png")

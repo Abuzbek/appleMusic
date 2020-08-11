@@ -7,9 +7,13 @@ window.addEventListener('load', function (e) {
     const songPlay = document.querySelector('.song_box_none');
     const songDuration = document.querySelector('.song_box_right');
     const songOptions = document.querySelector('.options');
+    const accountMenu = document.querySelector('.account_menu_list');
 
     menuToggle = () => {
         songOptions.classList.toggle('options_none')
+    }
+    accounntMenu = () => {
+        accountMenu.classList.toggle('account_menu_none')
     }
 
     let durTime = Math.floor(music.duration).toString();

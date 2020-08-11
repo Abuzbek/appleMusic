@@ -1,0 +1,22 @@
+extends layout
+
+block content
+    h1.mb-5.mt-5 #{title}
+    .row
+        .col-5
+            form(method="POST" action='/register')
+                .form-group
+                    label(for='name') Ваше имя
+                    input#name.form-control(type='text' name="name" placeholder="Имя" value=value.name)
+                .form-group
+                    label(for='username') Придумайте логин
+                    input#username.form-control(type='text' name="username" placeholder="Логин" value=value.username)
+                .form-group
+                    label(for='password') Придумайте пароль
+                    input#password.form-control(type='password' name="password" placeholder="Пароль")
+                .form-group
+                    label(for='password2') Подтвердите пароль
+                    input#password2.form-control(type='password' name="password2" placeholder="Подтвердите пароль")
+                button.btn.btn-primary(type='submit') Зарегистрироваться
+                p Уже есть аккаунт?     
+                    a(href="/") Войти.

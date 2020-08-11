@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    h1.mb-5.mt-5 #{title}
+    .row
+        form(method="POST" action='/login')
+            .form-group
+                label(for='username') Логин
+                input#username.form-control(type='text' name="username" placeholder="Логин")
+            .form-group
+                label(for='password') Пароль
+                input#password.form-control(type='password' name="password" placeholder="Пароль")
+            
+            button.btn.btn-primary(type='submit') Войти
+            p Нет аккаунт?     
+                a(href="/register") Зарегистрироваться.

@@ -1,0 +1,17 @@
+extends layout
+
+block content
+    if user
+        .row.justify-content-center
+            .col-8
+                form.formEdit(method="POST" action="/accountEdit/"+user.id enctype="multipart/form-data")
+                    .form-group.form_in
+                        input#album.formInput.form-control(type="text" name='name' value=user.name)
+                        .photo_absolute
+                            label.photo_absolute_label(for="accountImg")
+                                span
+                                    i.fas.fa-camera
+                    hr
+                    .form-group
+                        input#accountImg.formFile(type="file" name='accountImg' value=user.accountImg)
+                    button.btn.formBtn(type="submit" style="bottom: -75px") Редактировать

@@ -1,41 +1,49 @@
 extends layout
 
 block content
-    .row
-        .col-4 
-            .edit_img
-                .edit_img_absolute
-                    label.takeImg(for="img")
-                        i.fas.fa-camera
-                img.song_box_img(src="../public/images/add.jpg" alt="jpg")
-        .col-8
-            form(method="POST" action="/music/add")
-                .form-group.form_in
-                    input#album.form-control(type="text" name='album' placeholder="Альбом")
-                    .photo_absolute
-                        label.photo_absolute_label(for="albumImg")
-                            span
-                                i.fas.fa-camera
-                hr
-                .form-group.form_in
-                    input#singer.form-control(type="text" name='singer' placeholder="Исполнитель")
-                    .photo_absolute
-                        label.photo_absolute_label(for="singerImg")
-                            span
-                                i.fas.fa-camera
-                hr
-                .form-group
-                    input#name.form-control(type="text" name='name' aria-describedby="musicTitle" placeholder="Название")
-                    input#img.formFile(type="file" name='img')
-                    input#song.formFile(type="file" name='song')
-                    input#singerImg.formFile(type="file" name='singerImg')
-                    input#albumImg.formFile(type="file" name='albumImg')
-                button.btn.formBtn(type="submit") Добавить
+    if user
+        .row
+            .col-4 
+                .edit_img
+                    .edit_img_absolute
+                        label.takeImg(for="img")
+                            i.fas.fa-camera
+                    img.song_box_img(src="../public/images/add.jpg" alt="jpg")
+            .col-8
+                form(method="POST" action="/music/add")
+                    .form-group.form_in
+                        input#album.form-control(type="text" name='album' placeholder="Альбом")
+                        .photo_absolute
+                            label.photo_absolute_label(for="albumImg")
+                                span
+                                    i.fas.fa-camera
+                        //- .photo_id
+                        //-     label.photo_absolute_label(for="albumID")
+                        //-         span ID                                
+                    hr
+                    .form-group.form_in
+                        input#singer.form-control(type="text" name='singer' placeholder="Исполнитель")
+                        .photo_absolute
+                            label.photo_absolute_label(for="singerImg")
+                                span
+                                    i.fas.fa-camera
+                        //- .photo_id
+                        //-     label.photo_absolute_label(for="singerID")
+                        //-         span ID
+                    hr
+                    .form-group
+                        input#name.form-control(type="text" name='name' aria-describedby="musicTitle" placeholder="Название")
+                        //- input#albumID.form-control.inputID(type="text" name='albumID')
+                        //- input#singerID.form-control.inputID(type="text" name='singerID')
+                        input#img.formFile(type="file" name='img')
+                        input#song.formFile(type="file" name='song')
+                        input#singerImg.formFile(type="file" name='singerImg')
+                        input#albumImg.formFile(type="file" name='albumImg')
+                    button.btn.formBtn(type="submit") Добавить
 
-    hr
-    .song_change 
-        label.song_change_label(for="song") 
-            span.song_change_span 
-                i.far.fa-plus
-            |Добавить музыка
-
+        hr
+        .song_change 
+            label.song_change_label(for="song") 
+                span.song_change_span 
+                    i.far.fa-plus
+                |Добавить музыка

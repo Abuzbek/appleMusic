@@ -28,7 +28,7 @@ router.post('/:id', (req, res) => {
         if (err) console.log(err);
         else {
             req.flash('success', 'Музыка успешно редактировано')
-            res.redirect('/');
+            res.redirect('/index');
         }
     })
 })
