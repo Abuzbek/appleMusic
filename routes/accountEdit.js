@@ -15,22 +15,27 @@ router.get('/:id', (req, res) => {
 
 // Music edit page ById with post method
 router.post('/:id', upload.single('accountImg'), (req, res) => {
-    const user = {
-        name: req.body.name,
-    }
-
-    if (req.file) {
-        user.accountImg = '/images/' + req.file.filename
-    }
-
-    const query = { _id: req.params.id }
-    User.updateOne(query, user, (err) => {
-        if (err) console.log(err);
-        else {
-            req.flash('success', 'Аккаунт успешно редактировано')
-            res.redirect('/index');
+    try {
+        let user = {
+            name: req.body.name,
         }
-    })
+        console.log(req.file);
+        if (req.file) {
+            user.accountImg = '/images/' + req.file.filename
+        }
+    
+        const query = { _id: req.params.id }
+        User.updateOne(query, user, (err) => {
+            if (err) console.log(err);
+            else {
+                req.flash('success', 'Аккаунт успешно редактировано')
+                res.redirect('/index');
+            }
+        })
+    } catch (error) {
+        console.log(error);
+    }
+   
 })
 
 module.exports = router;
