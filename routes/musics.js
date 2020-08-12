@@ -1,16 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Music = require('../model/Music');
-
-const eA = (req, res, next) => {
-    if (req.isAuthenticated()) {
-        next()
-    }
-    else {
-        req.flash('danger', 'please login the page');
-        res.redirect('/')
-    }
-}
+const eA = require('../middleware/eA');
 
 router.get('/:id', eA, (req, res) => {
     Music.findById(req.params.id, (err, music) => {

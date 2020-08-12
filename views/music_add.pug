@@ -17,9 +17,6 @@ block content
                             label.photo_absolute_label(for="albumImg")
                                 span
                                     i.fas.fa-camera
-                        //- .photo_id
-                        //-     label.photo_absolute_label(for="albumID")
-                        //-         span ID                                
                     hr
                     .form-group.form_in
                         input#singer.form-control(type="text" name='singer' placeholder="Исполнитель")
@@ -27,20 +24,14 @@ block content
                             label.photo_absolute_label(for="singerImg")
                                 span
                                     i.fas.fa-camera
-                        //- .photo_id
-                        //-     label.photo_absolute_label(for="singerID")
-                        //-         span ID
                     hr
                     .form-group
                         input#name.form-control(type="text" name='name' aria-describedby="musicTitle" placeholder="Название")
-                        //- input#albumID.form-control.inputID(type="text" name='albumID')
-                        //- input#singerID.form-control.inputID(type="text" name='singerID')
                         input#img.formFile(type="file" name='img')
                         input#song.formFile(type="file" name='song')
                         input#singerImg.formFile(type="file" name='singerImg')
                         input#albumImg.formFile(type="file" name='albumImg')
                     button.btn.formBtn(type="submit") Добавить
-
         hr
         .song_change 
             label.song_change_label(for="song") 

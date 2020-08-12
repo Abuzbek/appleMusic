@@ -3,7 +3,9 @@ const bcrypt = require('bcryptjs');
 const router = express.Router();
 const User = require('../model/User');
 const passport = require('passport');
+const eA = require('../middleware/eA');
 
+// Get register
 router.get('/register', (req, res) => {
     res.render('register', {
         title: 'Зарегистрироваться',
@@ -14,7 +16,7 @@ router.get('/register', (req, res) => {
     })
 })
 
-
+// post register
 router.post('/register', async (req, res) => {
     const name = req.body.name;
     const username = req.body.username;
@@ -23,11 +25,12 @@ router.post('/register', async (req, res) => {
 
     const condidate = await User.findOne({ username })
 
-    req.checkBody('name', 'Имя,').notEmpty()
-    req.checkBody('username', 'Логин,').notEmpty()
-    req.checkBody('password', 'Пароль,').notEmpty()
-    req.checkBody('password', 'Минимальная длинна названия 5 символа,').len(5)
-    req.checkBody('password2', 'Пароли должны совпадать').equals(req.body.password).notEmpty()
+    req.checkBody('name', 'Введите имя.').notEmpty()
+    req.checkBody('username', 'Введите логин.').notEmpty()
+    req.checkBody('password', 'Введите пароль.').notEmpty()
+    req.checkBody('password', 'Минимальная длинна пароля 5 символа.').len(5)
+    req.checkBody('password2', 'Подтвердите пароль,').notEmpty()
+    req.checkBody('password2', 'Пароли должны совпадать.').equals(req.body.password)
 
     const errors = req.validationErrors();
 
@@ -60,7 +63,7 @@ router.post('/register', async (req, res) => {
                 newUser.save((err) => {
                     if (err) console.log(err);
                     else {
-                        req.flash('success', 'Аккаунт добавлено');
+                        req.flash('success', 'Пользователь успешно создан.');
                         res.redirect('/');
                     }
                 })
@@ -69,11 +72,14 @@ router.post('/register', async (req, res) => {
     }
 })
 
+// get login
 router.get('/', (req, res) => {
     res.render('login', {
         title: 'Войти'
     })
 })
+
+// post login
 router.post('/login', (req, res, next) => {
     passport.authenticate('local', {
         successRedirect: '/index',
@@ -82,9 +88,22 @@ router.post('/login', (req, res, next) => {
     })(req, res, next)
 })
 
-router.get('/logout', (req, res) => {
+// get logout
+router.get('/logout', eA, (req, res) => {
     req.logout();
     res.redirect('/')
+})
+
+// user delete
+
+router.get('/delete/:id', eA, (req, res) => {
+    User.findByIdAndDelete(req.params.id, (err) => {
+        if (err) console.log(err);
+        else {
+            req.flash('success', 'Пользователь успешно удалена')
+            res.redirect('/');
+        }
+    })
 })
 
 module.exports = router;

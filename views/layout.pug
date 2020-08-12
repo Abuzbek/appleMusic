@@ -24,13 +24,14 @@ html(lang="en")
                     li.account_menu_item
                         a(href="/accountEdit/"+user.id).account_menu_link Аккаунт
                     li.account_menu_item
+                        a(href="/delete/"+user.id).account_menu_link Удалить аккаунт
+                    li.account_menu_item
                         a(href="/logout").account_menu_link Выйти
         include fixedMenu
     .container
         != messages('message', locals)
         if errors 
             .alert.alert-danger
-                |Пожалуйста введите
                 each error, i in errors 
                     |  #{error.msg} 
         if message 
